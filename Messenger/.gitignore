@@ -1,0 +1,8 @@
+# Содержимое всех папок с имененем:
+build/
+DerivedData/
+xcuserdata/
+#
+# Все файлы с расширением
+*.xccheckout
+*.xcscmblueprint
