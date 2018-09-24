@@ -13,6 +13,7 @@
 		B32F03FA2153BE2A0009ADC3 /* Messenger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B32F03F82153BE2A0009ADC3 /* Messenger.xcdatamodeld */; };
 		B32F03FC2153BE2B0009ADC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32F03FB2153BE2B0009ADC3 /* Assets.xcassets */; };
 		B32F03FF2153BE2B0009ADC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32F03FD2153BE2B0009ADC3 /* LaunchScreen.storyboard */; };
+		B347A91521596AC20054D6A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B347A91421596AC20054D6A1 /* Log.swift */; };
 		B39AD084215519B300D3C848 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B39AD083215519B300D3C848 /* .gitignore */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		B32F03FB2153BE2B0009ADC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B32F03FE2153BE2B0009ADC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B32F04002153BE2B0009ADC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B347A91421596AC20054D6A1 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		B39AD083215519B300D3C848 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +67,7 @@
 				B32F03FD2153BE2B0009ADC3 /* LaunchScreen.storyboard */,
 				B32F04002153BE2B0009ADC3 /* Info.plist */,
 				B32F03F82153BE2A0009ADC3 /* Messenger.xcdatamodeld */,
+				B347A91421596AC20054D6A1 /* Log.swift */,
 				B39AD083215519B300D3C848 /* .gitignore */,
 			);
 			path = Messenger;
@@ -144,6 +147,7 @@
 			files = (
 				B32F03F42153BE2A0009ADC3 /* ViewController.swift in Sources */,
 				B32F03F22153BE2A0009ADC3 /* AppDelegate.swift in Sources */,
+				B347A91521596AC20054D6A1 /* Log.swift in Sources */,
 				B32F03FA2153BE2A0009ADC3 /* Messenger.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +297,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46G92N6X3Y;
 				INFOPLIST_FILE = Messenger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +305,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = BB.Messenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -311,6 +316,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46G92N6X3Y;
 				INFOPLIST_FILE = Messenger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,7 +324,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = BB.Messenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
