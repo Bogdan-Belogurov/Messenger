@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        testFrameEditButton()
+        testFrameEditButton() //frame отличается так как к ProfileViewController добавилась кнопка "Редактировать" вызвалась функция sizeAndLayoutSettings() и задействовались констрейнты
     }
     
     override func viewWillLayoutSubviews() {
