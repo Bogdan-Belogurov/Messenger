@@ -8,26 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		B32F03F22153BE2A0009ADC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32F03F12153BE2A0009ADC3 /* AppDelegate.swift */; };
-		B32F03F42153BE2A0009ADC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32F03F32153BE2A0009ADC3 /* ViewController.swift */; };
 		B32F03F72153BE2A0009ADC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32F03F52153BE2A0009ADC3 /* Main.storyboard */; };
 		B32F03FA2153BE2A0009ADC3 /* Messenger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B32F03F82153BE2A0009ADC3 /* Messenger.xcdatamodeld */; };
 		B32F03FC2153BE2B0009ADC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32F03FB2153BE2B0009ADC3 /* Assets.xcassets */; };
 		B32F03FF2153BE2B0009ADC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32F03FD2153BE2B0009ADC3 /* LaunchScreen.storyboard */; };
-		B347A91521596AC20054D6A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B347A91421596AC20054D6A1 /* Log.swift */; };
 		B39AD084215519B300D3C848 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B39AD083215519B300D3C848 /* .gitignore */; };
+		B3B5923B215EADD60095F693 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B5923A215EADD60095F693 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B32F03EE2153BE2A0009ADC3 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32F03F12153BE2A0009ADC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B32F03F32153BE2A0009ADC3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B32F03F62153BE2A0009ADC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B32F03F92153BE2A0009ADC3 /* Messenger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Messenger.xcdatamodel; sourceTree = "<group>"; };
 		B32F03FB2153BE2B0009ADC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B32F03FE2153BE2B0009ADC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B32F04002153BE2B0009ADC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B347A91421596AC20054D6A1 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		B39AD083215519B300D3C848 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		B3B5923A215EADD60095F693 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +59,12 @@
 			isa = PBXGroup;
 			children = (
 				B32F03F12153BE2A0009ADC3 /* AppDelegate.swift */,
-				B32F03F32153BE2A0009ADC3 /* ViewController.swift */,
+				B3B5923A215EADD60095F693 /* ProfileViewController.swift */,
 				B32F03F52153BE2A0009ADC3 /* Main.storyboard */,
 				B32F03FB2153BE2B0009ADC3 /* Assets.xcassets */,
 				B32F03FD2153BE2B0009ADC3 /* LaunchScreen.storyboard */,
 				B32F04002153BE2B0009ADC3 /* Info.plist */,
 				B32F03F82153BE2A0009ADC3 /* Messenger.xcdatamodeld */,
-				B347A91421596AC20054D6A1 /* Log.swift */,
 				B39AD083215519B300D3C848 /* .gitignore */,
 			);
 			path = Messenger;
@@ -145,9 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B32F03F42153BE2A0009ADC3 /* ViewController.swift in Sources */,
 				B32F03F22153BE2A0009ADC3 /* AppDelegate.swift in Sources */,
-				B347A91521596AC20054D6A1 /* Log.swift in Sources */,
+				B3B5923B215EADD60095F693 /* ProfileViewController.swift in Sources */,
 				B32F03FA2153BE2A0009ADC3 /* Messenger.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,7 +293,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46G92N6X3Y;
 				INFOPLIST_FILE = Messenger/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,7 +312,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46G92N6X3Y;
 				INFOPLIST_FILE = Messenger/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
