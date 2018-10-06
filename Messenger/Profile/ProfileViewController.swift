@@ -16,11 +16,15 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBOutlet weak var newImageButton: UIButton!
     
+    @IBAction func dismissVC(_ sender: Any) {
+        print("Сохранил")
+        dismiss(animated: true, completion: nil)
+    }
+    
     let imagePicker = UIImagePickerController()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-       // print(editButton.frame) //выдает ошибку так как обект класса еще не создался и метод sizeAndLayoutSettings еще не вызван.
     }
     
     @IBAction func selectNewImage(_ sender: Any) {
@@ -30,7 +34,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        testFrameEditButton()
+       // testFrameEditButton()
         sizeAndLayoutSettings()
         imagePicker.delegate = self
     }
@@ -41,7 +45,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        testFrameEditButton() //frame отличается так как к ProfileViewController добавилась кнопка "Редактировать" вызвалась функция sizeAndLayoutSettings() и задействовались констрейнты
+       // testFrameEditButton()
     }
     
     override func viewWillLayoutSubviews() {
