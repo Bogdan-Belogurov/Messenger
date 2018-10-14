@@ -9,6 +9,97 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Change Theme-->
+        <scene sceneID="hae-NO-HKO">
+            <objects>
+                <viewController id="fWV-wr-3oH" customClass="ThemesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5sp-fR-S9i">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="58" translatesAutoresizingMaskIntoConstraints="NO" id="o0W-A1-ZRy">
+                                <rect key="frame" x="16" y="224.5" width="343" height="218"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xb1-7T-pYW">
+                                        <rect key="frame" x="1.5" y="0.0" width="340" height="34"/>
+                                        <color key="backgroundColor" white="0.90741644965277779" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Xb1-7T-pYW" secondAttribute="height" multiplier="10:1" id="7U5-qg-9fO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="White">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="themeChangeButton:" destination="fWV-wr-3oH" eventType="touchUpInside" id="9Jl-Q6-egf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ut-in-AyU">
+                                        <rect key="frame" x="1.5" y="92" width="340" height="34"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Gray">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="themeChangeButton:" destination="fWV-wr-3oH" eventType="touchUpInside" id="1jK-v3-Uzo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPe-aR-6bI">
+                                        <rect key="frame" x="1.5" y="184" width="340" height="34"/>
+                                        <color key="backgroundColor" red="0.076063368055555552" green="0.71568467881944442" blue="0.25504557291666669" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Green">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="themeChangeButton:" destination="fWV-wr-3oH" eventType="touchUpInside" id="PlZ-nx-vra"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0Ut-in-AyU" firstAttribute="leading" secondItem="Xb1-7T-pYW" secondAttribute="leading" id="Pze-Sy-WKP"/>
+                                    <constraint firstItem="0Ut-in-AyU" firstAttribute="trailing" secondItem="Xb1-7T-pYW" secondAttribute="trailing" id="iSM-nO-lyd"/>
+                                    <constraint firstItem="oPe-aR-6bI" firstAttribute="leading" secondItem="0Ut-in-AyU" secondAttribute="leading" id="um9-ot-ece"/>
+                                    <constraint firstItem="oPe-aR-6bI" firstAttribute="trailing" secondItem="0Ut-in-AyU" secondAttribute="trailing" id="yhr-dL-Vh1"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8D-s1-ioC">
+                                <rect key="frame" x="17.5" y="492.5" width="340" height="34"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="backToPreviousVC:" destination="fWV-wr-3oH" eventType="touchUpInside" id="gM4-7s-UaC"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a theme!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPQ-rE-qLt">
+                                <rect key="frame" x="17.5" y="148" width="340" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nPQ-rE-qLt" firstAttribute="trailing" secondItem="Xb1-7T-pYW" secondAttribute="trailing" id="1xf-q2-elH"/>
+                            <constraint firstItem="o0W-A1-ZRy" firstAttribute="leading" secondItem="FRW-Vu-HNg" secondAttribute="leading" constant="16" id="2sk-SB-qK0"/>
+                            <constraint firstItem="T8D-s1-ioC" firstAttribute="top" secondItem="o0W-A1-ZRy" secondAttribute="bottom" constant="50" id="A5h-8F-KcS"/>
+                            <constraint firstItem="nPQ-rE-qLt" firstAttribute="leading" secondItem="Xb1-7T-pYW" secondAttribute="leading" id="DXx-Fa-dXg"/>
+                            <constraint firstItem="FRW-Vu-HNg" firstAttribute="trailing" secondItem="o0W-A1-ZRy" secondAttribute="trailing" constant="16" id="K5d-9f-bQL"/>
+                            <constraint firstItem="T8D-s1-ioC" firstAttribute="trailing" secondItem="oPe-aR-6bI" secondAttribute="trailing" id="Mom-3V-Ng7"/>
+                            <constraint firstItem="T8D-s1-ioC" firstAttribute="leading" secondItem="oPe-aR-6bI" secondAttribute="leading" id="MxY-oi-52x"/>
+                            <constraint firstItem="o0W-A1-ZRy" firstAttribute="centerX" secondItem="5sp-fR-S9i" secondAttribute="centerX" id="OvW-eb-uso"/>
+                            <constraint firstItem="o0W-A1-ZRy" firstAttribute="centerY" secondItem="5sp-fR-S9i" secondAttribute="centerY" id="jqJ-eF-udw"/>
+                            <constraint firstItem="o0W-A1-ZRy" firstAttribute="top" secondItem="nPQ-rE-qLt" secondAttribute="bottom" constant="50" id="vvB-4N-prH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FRW-Vu-HNg"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Change Theme" id="SDM-nY-zeV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k1V-N3-piv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="765.60000000000002" y="795.6521739130435"/>
+        </scene>
         <!--Tinkoff Chat-->
         <scene sceneID="guB-tb-KkR">
             <objects>
@@ -30,19 +121,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIU-uL-kcQ">
-                                                    <rect key="frame" x="25" y="11" width="275" height="18"/>
+                                                    <rect key="frame" x="25" y="11" width="220" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6p-ul-X6B">
-                                                    <rect key="frame" x="25" y="29" width="275" height="16"/>
+                                                    <rect key="frame" x="25" y="29" width="220" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqR-Q0-Hs6">
-                                                    <rect key="frame" x="305" y="11" width="65" height="12"/>
+                                                    <rect key="frame" x="250" y="11" width="65" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -84,6 +175,11 @@
                         <viewLayoutGuide key="safeArea" id="mJ4-bg-1AE"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tinkoff Chat" id="kwD-NA-0kh">
+                        <barButtonItem key="leftBarButtonItem" title="Themes" id="CXB-du-NhN">
+                            <connections>
+                                <segue destination="fWV-wr-3oH" kind="presentation" identifier="listToThemes" id="M3f-In-wbF"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Profile" id="gIA-d1-lqe">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" id="YTw-aw-x15"/>
@@ -157,12 +253,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QZ-J7-oyD">
-                                                    <rect key="frame" x="290" y="10" width="75" height="60"/>
+                                                    <rect key="frame" x="235" y="10" width="75" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geF-5W-jJh">
                                                             <rect key="frame" x="10" y="10" width="55" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -292,7 +388,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1157.5999999999999" y="795.6521739130435"/>
+            <point key="canvasLocation" x="1530" y="796"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SYz-WK-ovQ">

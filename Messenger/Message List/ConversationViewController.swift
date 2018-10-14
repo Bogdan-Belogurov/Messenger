@@ -17,6 +17,7 @@ class ConversationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
     }
     
 
@@ -35,15 +36,16 @@ extension ConversationViewController:  UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: MessageCell
         if (indexPath.row % 2) == 0 {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "incoming", for: indexPath) as! MessageCell
-            cell.textt = testMessage[indexPath.row]
-            return cell
+            cell = tableView.dequeueReusableCell(withIdentifier: "incoming", for: indexPath) as! MessageCell
         } else {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "outgoing", for: indexPath) as! MessageCell
-            cell.textt = testMessage[indexPath.row]
-            return cell
+            cell = tableView.dequeueReusableCell(withIdentifier: "outgoing", for: indexPath) as! MessageCell
         }
+        cell.textt = testMessage[indexPath.row]
+        
+        cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
+        return cell
     }
 }
 

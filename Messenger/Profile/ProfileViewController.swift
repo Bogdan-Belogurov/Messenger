@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var newImageButton: UIButton!
     
     @IBAction func dismissVC(_ sender: Any) {
-        print("Сохранил")
+        print("Сохранил типо")
         dismiss(animated: true, completion: nil)
     }
     
@@ -35,7 +35,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
        // testFrameEditButton()
-        sizeAndLayoutSettings()
         imagePicker.delegate = self
     }
     
@@ -54,6 +53,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        sizeAndLayoutSettings()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -15,6 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        if let currentColor = UserDefaults.standard.colorForKey(key: "chosenTheme") {
+            UINavigationBar.appearance().barTintColor = currentColor
+            UINavigationBar.appearance().backgroundColor = currentColor
+        }
         return true
     }
 
