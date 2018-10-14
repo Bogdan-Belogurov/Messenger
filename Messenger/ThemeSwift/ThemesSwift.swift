@@ -9,13 +9,13 @@
 import Foundation
 
 struct Color {
-    let them1: UIColor
-    let them2: UIColor
-    let them3: UIColor
+    let theme1: UIColor
+    let theme2: UIColor
+    let theme3: UIColor
     
     init() {
-        them1 = UIColor.white
-        them2 = UIColor.darkGray
-        them3 = UIColor.green
+        theme1 = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        theme2 = #colorLiteral(red: 0.5741485357, green: 0.5741624236, blue: 0.574154973, alpha: 1)
+        theme3 = #colorLiteral(red: 0.04765274717, green: 0.8052030457, blue: 0.3819284671, alpha: 1)
     }
 }

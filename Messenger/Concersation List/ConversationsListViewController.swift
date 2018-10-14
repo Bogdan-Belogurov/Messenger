@@ -48,9 +48,20 @@ class ConversationsListViewController: UIViewController {
         }
         
         if segue.identifier == "listToThemes" {
-            let dvc = segue.destination as! ThemesViewController
-            dvc.model = Themes()
-            dvc.delegate = self
+            if let dvc = segue.destination as? ThemesViewController {
+                dvc.model = Themes()
+                dvc.delegate = self
+            }
+            
+            if let dvc = segue.destination as? ThemesViewControllerSwift {
+                dvc.closureTheme = {themeColorFromVC -> () in
+                    self.view.backgroundColor = themeColorFromVC
+                    self.logThemeChanging(selectedTheme: themeColorFromVC)
+                }
+                
+            }
+
+        
         }
     }
     

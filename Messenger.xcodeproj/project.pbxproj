@@ -12,10 +12,10 @@
 		B32F03FA2153BE2A0009ADC3 /* Messenger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B32F03F82153BE2A0009ADC3 /* Messenger.xcdatamodeld */; };
 		B32F03FC2153BE2B0009ADC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32F03FB2153BE2B0009ADC3 /* Assets.xcassets */; };
 		B32F03FF2153BE2B0009ADC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32F03FD2153BE2B0009ADC3 /* LaunchScreen.storyboard */; };
-		B3392DC921727678008DB283 /* ThemesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3392DC821727678008DB283 /* ThemesViewController.m */; };
-		B3392DD321727889008DB283 /* Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = B3392DD221727889008DB283 /* Themes.m */; };
-		B3392DDF2173BA32008DB283 /* ThemesViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3392DDD2173B86E008DB283 /* ThemesViewControllerSwift.swift */; };
-		B3392DE02173BA36008DB283 /* ThemesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3392DDA2173A58B008DB283 /* ThemesSwift.swift */; };
+		B3392DFB2173C00C008DB283 /* Themes.m in Sources */ = {isa = PBXBuildFile; fileRef = B3392DD221727889008DB283 /* Themes.m */; };
+		B3392DFC2173C00E008DB283 /* ThemesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3392DC821727678008DB283 /* ThemesViewController.m */; };
+		B3392DFD2173CC2D008DB283 /* ThemesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3392DDA2173A58B008DB283 /* ThemesSwift.swift */; };
+		B3392DFE2173CC2F008DB283 /* ThemesViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3392DDD2173B86E008DB283 /* ThemesViewControllerSwift.swift */; };
 		B389AE492167719F002D099A /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B389AE482167719F002D099A /* ConversationsListViewController.swift */; };
 		B389AE4B216773CF002D099A /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B389AE4A216773CF002D099A /* ConversationTableViewCell.swift */; };
 		B389AE4D21677B14002D099A /* ConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B389AE4C21677B14002D099A /* ConversationCellConfiguration.swift */; };
@@ -42,6 +42,7 @@
 		B3392DD521727C85008DB283 /* Messenger-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Messenger-Bridging-Header.h"; sourceTree = "<group>"; };
 		B3392DDA2173A58B008DB283 /* ThemesSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesSwift.swift; sourceTree = "<group>"; };
 		B3392DDD2173B86E008DB283 /* ThemesViewControllerSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewControllerSwift.swift; sourceTree = "<group>"; };
+		B3392DFA2173BC3E008DB283 /* Messenger copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Messenger copy-Info.plist"; path = "/Users/BogdanBelogurov/Documents/Белогуров Богдан/Тиньков/Дз/Messenger/Messenger copy-Info.plist"; sourceTree = "<absolute>"; };
 		B389AE482167719F002D099A /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		B389AE4A216773CF002D099A /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		B389AE4C21677B14002D099A /* ConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellConfiguration.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 			children = (
 				B32F03F02153BE2A0009ADC3 /* Messenger */,
 				B32F03EF2153BE2A0009ADC3 /* Products */,
+				B3392DFA2173BC3E008DB283 /* Messenger copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -238,18 +240,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				B389AE542168D903002D099A /* MessageCellConfiguration.swift in Sources */,
-				B3392DD321727889008DB283 /* Themes.m in Sources */,
 				B389AE502168D57B002D099A /* ConversationViewController.swift in Sources */,
-				B3392DC921727678008DB283 /* ThemesViewController.m in Sources */,
 				B32F03F22153BE2A0009ADC3 /* AppDelegate.swift in Sources */,
+				B3392DFD2173CC2D008DB283 /* ThemesSwift.swift in Sources */,
 				B389AE4D21677B14002D099A /* ConversationCellConfiguration.swift in Sources */,
 				B389AE492167719F002D099A /* ConversationsListViewController.swift in Sources */,
 				B3B5923B215EADD60095F693 /* ProfileViewController.swift in Sources */,
 				B32F03FA2153BE2A0009ADC3 /* Messenger.xcdatamodeld in Sources */,
-				B3392DE02173BA36008DB283 /* ThemesSwift.swift in Sources */,
+				B3392DFE2173CC2F008DB283 /* ThemesViewControllerSwift.swift in Sources */,
 				B389AE4B216773CF002D099A /* ConversationTableViewCell.swift in Sources */,
-				B3392DDF2173BA32008DB283 /* ThemesViewControllerSwift.swift in Sources */,
+				B3392DFB2173C00C008DB283 /* Themes.m in Sources */,
 				B389AE592168E843002D099A /* MessageCell.swift in Sources */,
+				B3392DFC2173C00E008DB283 /* ThemesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
