@@ -15,6 +15,7 @@ class ThemesViewControllerSwift: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UserDefaults.standard.colorForKey(key: "chosenTheme") ?? UIColor.white
     }
     
     @IBAction func themeChangeButton(_ sender: UIButton){
