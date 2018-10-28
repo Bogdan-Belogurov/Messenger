@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet var actitvityIndicator: UIActivityIndicatorView!
     
     private var isEditMode: Bool = false
+    var dataSavePicker: SaveProfileProtocol = GCDDataManager()
+    var profile: UserProfile = UserProfile(name: "Name", description: "Description", image: UIImage(named: "placeholder-user")) 
 
     @IBOutlet var gcdButton: UIButton!
     @IBOutlet var operationButton: UIButton!
@@ -61,10 +63,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     
-    var dataSavePicker: SaveProfileProtocol = GCDDataManager()
-    var profile: UserProfile = UserProfile(name: "Name", description: "Description", image: UIImage(named: "placeholder-user"))
-    
-    
     @IBAction func editPressed(_ sender: Any) {
         viewEditor(isEditMode)
         gcdButton.isEnabled = false
@@ -92,7 +90,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         imagePicker.delegate = self
         loadDataFromUserDefaults()
         viewEditor(isEditMode)
+        observeKeyboardNotifications()
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -134,10 +134,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     private func  setAlertControllerForSelectNewImage() {
         let alertController = UIAlertController(title: NSLocalizedString("Истоник фотографий", comment: "Истоник фотографий"), message: nil, preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: NSLocalizedString("Камера", comment: "Камера") , style: .default, handler: { (action) in
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = .camera
             
-            self.present(self.imagePicker, animated: true, completion: nil)
+            if !(UIImagePickerController.isSourceTypeAvailable(.camera)) {
+                let warningAlert = UIAlertController(title: "Ошибка!", message: "Невозможно использовать камеру", preferredStyle: .alert);
+                let closeAction = UIAlertAction(title: "Ок", style: .cancel, handler: nil)
+                
+                warningAlert.addAction(closeAction)
+                self.present(warningAlert, animated: true, completion: nil)
+            } else {
+                self.imagePicker.allowsEditing = true
+                self.imagePicker.sourceType = .camera
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }
         })
         let photoLibAction = UIAlertAction(title: NSLocalizedString("Фото", comment: "Фото"), style: .default, handler: { (action) in
             self.imagePicker.allowsEditing = true
@@ -190,6 +198,29 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.descriptionTextField.text = profile?.description
             self.userImage.image = profile?.image
         }
+    }
+    
+    fileprivate func observeKeyboardNotifications()
+    {
+        let notifier = NotificationCenter.default
+        notifier.addObserver(self, selector: #selector(keyboardShow), name: UIWindow.keyboardWillShowNotification, object: nil)
+        notifier.addObserver(self, selector: #selector(keyboardHide), name: UIWindow.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardShow() {
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+            self.view.frame = CGRect (x: 0, y: -(self.userImage.frame.height-50), width: self.view.frame.width, height: self.view.frame.height)
+        }, completion: nil)
+        
+    }
+    
+    
+    @objc func keyboardHide() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+            self.view.frame = CGRect (x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        }, completion: nil)
+        
     }
     
 }

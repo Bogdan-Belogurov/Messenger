@@ -7,44 +7,21 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
 class ConversationsListViewController: UIViewController {
     
-    private struct Conventions {
-        var name: String
-        var message: String?
-        var date: Date
-        var online: Bool
-        var hasUnreadMessages: Bool
-    }
-   private let onlineConventions = [Conventions(name: "Bogdan", message: "Hello", date: Date(), online: true, hasUnreadMessages: true),
-                                    Conventions(name: "Krutoy", message: "Bye!", date: Date(timeIntervalSinceNow: TimeInterval(arc4random()%9999999)), online: false, hasUnreadMessages: false),
-                                    Conventions(name: "Alex", message: "Go! I've created", date: Date(), online: true, hasUnreadMessages: false),
-                                    Conventions(name: "Bob", message: "Call me 😘!", date: Date(timeIntervalSinceNow: TimeInterval(arc4random()%9999999)), online: false, hasUnreadMessages: true),
-                                    Conventions(name: "Liza", message: "Bla bla🤔 Bla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla ", date: Date(), online: true, hasUnreadMessages: false),
-                                    Conventions(name: "Artem", message: "Go to Ti", date: Date(), online: false, hasUnreadMessages: true),
-                                    Conventions(name: "Mom", message: "Are you sleeping?", date: Date(timeIntervalSinceNow: TimeInterval(arc4random()%9999999)), online: false, hasUnreadMessages: false),
-                                    Conventions(name: "Krutoy", message: nil, date: Date(), online: false, hasUnreadMessages: false),
-                                    Conventions(name: "Alex", message: nil, date: Date(), online: true, hasUnreadMessages: false),
-                                    Conventions(name: "Bob", message: "Call me 😘!", date: Date(timeIntervalSinceNow: TimeInterval(arc4random()%9999999)), online: false, hasUnreadMessages: true)]
-    
-    private let historyConventions = [Conventions(name: "Bogdan", message: "Hello", date: Date(), online: false, hasUnreadMessages: true),
-                                      Conventions(name: "Krutoy", message: "Bye!", date: Date(), online: false, hasUnreadMessages: false),
-                                      Conventions(name: "Alex", message: "Go! I've created", date: Date(), online: false, hasUnreadMessages: false),
-                                      Conventions(name: "Bob", message: "Call me 😘!", date: Date(timeIntervalSinceNow: TimeInterval(arc4random()%9999999)), online: false, hasUnreadMessages: true),
-                                      Conventions(name: "Liza", message: "Bla bla🤔", date: Date(timeIntervalSinceNow: TimeInterval(arc4random()%9999999)), online: false, hasUnreadMessages: false),
-                                      Conventions(name: "Artem", message: "Go to Ti", date: Date(), online: false, hasUnreadMessages: true),
-                                      Conventions(name: "Mom", message: "Are you sleeping?", date: Date(), online: false, hasUnreadMessages: false),
-                                      Conventions(name: "Krutoy", message: "Bye!", date: Date(timeIntervalSinceNow: TimeInterval(arc4random()%9999999)), online: false, hasUnreadMessages: false),
-                                      Conventions(name: "Alex", message: "Go! I've created", date: Date(), online: false, hasUnreadMessages: false),
-                                      Conventions(name: "Bob", message: "Call me 😘!", date: Date(), online: false, hasUnreadMessages: true)]
-
+    let multipeerCommunicator : MultipeerCommunicator = MultipeerCommunicator()
+    let communicationManager : CommunicationManager = CommunicationManager()
+    var onlineConventions = [Conversation]()
+    var selectedConversation: Conversation?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "listToChat" {
             let currentIndexPath = tableView.indexPathForSelectedRow
             let dvc = segue.destination as! ConversationViewController
             dvc.navigationItem.title = onlineConventions[(currentIndexPath?.row)!].name
+            dvc.idUserTo = onlineConventions[(currentIndexPath?.row)!].userID
         }
         
         if segue.identifier == "listToThemes" {
@@ -53,15 +30,12 @@ class ConversationsListViewController: UIViewController {
                 dvc.delegate = self
             }
             
-            if let dvc = segue.destination as? ThemesViewControllerSwift {
-                dvc.closureTheme = {themeColorFromVC -> () in
-                    self.view.backgroundColor = themeColorFromVC
-                    self.logThemeChanging(selectedTheme: themeColorFromVC)
-                }
-                
+        if let dvc = segue.destination as? ThemesViewControllerSwift {
+            dvc.closureTheme = {themeColorFromVC -> () in
+                self.view.backgroundColor = themeColorFromVC
+                self.logThemeChanging(selectedTheme: themeColorFromVC)
             }
-
-        
+        }
         }
     }
     
@@ -69,7 +43,16 @@ class ConversationsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        multipeerCommunicator.delegate = communicationManager
+        communicationManager.conversationDelegate = self as UpdateConversationDelegate
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
     }
     
     func logThemeChanging(selectedTheme: UIColor) {
@@ -84,38 +67,21 @@ class ConversationsListViewController: UIViewController {
 extension ConversationsListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return onlineConventions.count
-        case 1:
-            return historyConventions.count
-        default:
-            return 0
-        }
+        return onlineConventions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "conversationCell", for: indexPath) as! ConversationTableViewCell
-        if indexPath.section == 0 {
-            let online = onlineConventions[indexPath.row]
-            cell.name = online.name
-            cell.message = online.message
-            cell.date = online.date
-            cell.online = online.online
-            cell.hasUnreadMessages = online.hasUnreadMessages
-            
-        } else {
-            let history = historyConventions[indexPath.row]
-            cell.name = history.name
-            cell.message = history.message
-            cell.date = history.date
-            cell.online = history.online
-            cell.hasUnreadMessages = history.hasUnreadMessages
-        }
+        let conversationWithUser = onlineConventions[indexPath.row]
+        cell.name = conversationWithUser.name
+        cell.message = conversationWithUser.message
+        cell.date = conversationWithUser.date
+        cell.online = conversationWithUser.online ?? false
+        cell.hasUnreadMessages = conversationWithUser.hasUnreadMessage ?? false
         return cell
     }
 }
@@ -124,14 +90,7 @@ extension ConversationsListViewController: UITableViewDataSource {
 extension ConversationsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Online"
-        case 1:
-            return "History"
-        default:
-            return "Error"
-        }
+        return "Online"
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -139,6 +98,14 @@ extension ConversationsListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let conversationWithUser = onlineConventions[indexPath.row]
+        if let conversationId = conversationWithUser.userID {
+            if let messages = conversationData[conversationId] {
+            conversationWithUser.currentMessages = messages
+            }
+        }
+        selectedConversation = conversationWithUser
+        
         performSegue(withIdentifier: "listToChat", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -149,6 +116,88 @@ extension ConversationsListViewController: ThemesViewControllerDelegate {
     func themesViewController(_ controller: ThemesViewController!, didSelectTheme selectedTheme: UIColor!) {
         logThemeChanging(selectedTheme: selectedTheme)
     }
+}
+
+// MARK: - UpdateConversationDelegate
+extension ConversationsListViewController: UpdateConversationDelegate {
+    func didAdd(userInfo: Conversation) {
+        if let userID = userInfo.userID {
+            if let _:Int = self.onlineConventions.index(where: {$0.userID == userID}) {
+                return
+            } else {
+                if let name = userInfo.name {
+                    if let userID = userInfo.userID {
+                        let user = Conversation(name: name, userID: userID, message: nil, date: Date(), online: true, hasUnreadMessage: false)
+                        self.onlineConventions.append(user)
+                    }
+                }
+            }
+        }
+        self.onlineConventions = sortUsersByDateAndName(users: self.onlineConventions)
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didDelete(UserID: String) {
+        if let index: Int = self.onlineConventions.index(where: {$0.userID == UserID}) {
+            self.onlineConventions.remove(at: index)
+        }
+        
+        self.onlineConventions = sortUsersByDateAndName(users: self.onlineConventions)
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didReceiveMessage(text: String, fromUser: String, toUser: String) {
+        if let index: Int = self.onlineConventions.index(where: {$0.userID == fromUser}) {
+            self.onlineConventions[index].message = text
+            self.onlineConventions[index].date = Date()
+            self.onlineConventions[index].hasUnreadMessage = true
+            
+            let currentUser = self.onlineConventions[index]
+            if let id = currentUser.userID {
+                if let msgs = conversationData[id] {
+                    self.onlineConventions[index].currentMessages = msgs
+                }
+                
+                self.onlineConventions[index].currentMessages.append(Message(textt: text, isInputMessage: true))
+                conversationData.updateValue(self.onlineConventions[index].currentMessages, forKey: id)
+            }
+            
+            
+        }
+        self.onlineConventions = sortUsersByDateAndName(users: self.onlineConventions)
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    private func sortUsersByDateAndName(users: [Conversation]) -> [Conversation] {
+        var tmp = users.filter { $0.date == nil }
+        var us = users.filter { $0.date != nil }
+        
+        us.sort { (lhs: Conversation, rhs: Conversation) in
+            if let _ = lhs.date, let _ = rhs.date {
+                return lhs.date! > rhs.date!
+            }
+            return false
+        }
+        
+        tmp.sort { (lhs: Conversation, rhs: Conversation) in
+            if let _ = lhs.name, let _ = rhs.name {
+                return lhs.name! < rhs.name!
+            }
+            return false
+        }
+        us.append(contentsOf: tmp)
+        return us
+    }
+    
 }
 
 extension UserDefaults {
