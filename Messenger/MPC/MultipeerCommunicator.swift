@@ -15,7 +15,7 @@ class MultipeerCommunicator: NSObject, Communicator {
     
     var online: Bool
     let iPeerID: MCPeerID
-    let discoveryInfo = ["userName": "Belogurov Bogdan"]
+    let discoveryInfo = ["userName": "Bogdan Belogurov"]
     let serviceType = "tinkoff-chat"
     var advertiser: MCNearbyServiceAdvertiser?
     var browser: MCNearbyServiceBrowser?

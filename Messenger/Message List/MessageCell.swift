@@ -9,17 +9,16 @@
 import UIKit
 
 class MessageCell: UITableViewCell, MessageCellConfiguration {
+    @IBOutlet var messageLabel: UILabel!
 
-    @IBOutlet weak var messageLabel: UILabel!
-    
-    @IBOutlet weak var messageBackground: UIView!
-    
+    @IBOutlet var messageBackground: UIView!
+
     var textt: String? {
         didSet {
             self.messageLabel.text = self.textt
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         messageBackground.layer.cornerRadius = 15
@@ -30,5 +29,4 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
 
         // Configure the view for the selected state
     }
-
 }

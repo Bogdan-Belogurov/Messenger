@@ -10,7 +10,7 @@ import Foundation
 import MultipeerConnectivity
 
 protocol Communicator {
-    func sendMessage(string: String, toUserID: String, completionHandler: ((_ success: Bool, _ error: Error?) -> ())?)
-    weak var delegate: CommunicatorDelegate? {get set}
-    var online: Bool {get set}
+    func sendMessage(string: String, toUserID: String, completionHandler: ((_ success: Bool, _ error: Error?) -> Void)?)
+    weak var delegate: CommunicatorDelegate? { get set }
+    var online: Bool { get set }
 }

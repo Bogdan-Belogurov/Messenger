@@ -9,46 +9,45 @@
 import UIKit
 
 class ConversationTableViewCell: UITableViewCell, ConversationCellConfiguration {
+    @IBOutlet var nameLabel: UILabel!
 
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBOutlet weak var messageLabel: UILabel!
-    
-    @IBOutlet weak var dateLabel: UILabel!
-    
+    @IBOutlet var messageLabel: UILabel!
+
+    @IBOutlet var dateLabel: UILabel!
+
     private let dateFormatter = DateFormatter()
-    
+
     required init?(coder aDecoder: NSCoder) {
-        self.online = false
-        self.hasUnreadMessages = false
+        online = false
+        hasUnreadMessages = false
         super.init(coder: aDecoder)
     }
-    
+
     var name: String? {
         didSet {
-            nameLabel.text = self.name
+            nameLabel.text = name
         }
     }
-    
+
     var message: String? {
         didSet {
-            if self.message == nil {
+            if message == nil {
                 messageLabel.font = UIFont(name: "Helvetica", size: 17)
                 messageLabel.text = "No messages yet"
             } else {
                 messageLabel.font = UIFont(name: "System", size: 13)
-                messageLabel.text = self.message
+                messageLabel.text = message
             }
         }
     }
-    
+
     var date: Date? {
         didSet {
             guard let date = self.date else {
                 dateLabel.text = ""
                 return
             }
-            
+
             let checkFormat = Calendar.current.compare(Date(), to: date, toGranularity: .day)
             switch checkFormat {
             case .orderedSame:
@@ -62,7 +61,7 @@ class ConversationTableViewCell: UITableViewCell, ConversationCellConfiguration 
             }
         }
     }
-    
+
     var online: Bool {
         didSet {
             if self.online {
@@ -72,7 +71,7 @@ class ConversationTableViewCell: UITableViewCell, ConversationCellConfiguration 
             }
         }
     }
-    
+
     var hasUnreadMessages: Bool {
         didSet {
             if self.hasUnreadMessages {
@@ -82,7 +81,7 @@ class ConversationTableViewCell: UITableViewCell, ConversationCellConfiguration 
             }
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -93,5 +92,4 @@ class ConversationTableViewCell: UITableViewCell, ConversationCellConfiguration 
 
         // Configure the view for the selected state
     }
-
 }
