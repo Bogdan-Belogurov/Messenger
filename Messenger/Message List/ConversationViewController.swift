@@ -88,13 +88,6 @@ extension ConversationViewController: UITableViewDataSource {
             return cell
         }
 
-//        let cell: MessageCell
-//        if (indexPath.row % 2) == 0 {
-//            cell = tableView.dequeueReusableCell(withIdentifier: "incoming", for: indexPath) as! MessageCell
-//        } else {
-//            cell = tableView.dequeueReusableCell(withIdentifier: "outgoing", for: indexPath) as! MessageCell
-//        }
-//        cell.textt = "Test Test"
     }
 }
 
