@@ -15,23 +15,31 @@ class ConversationViewController: UIViewController {
     @IBOutlet var sendMessageButton: UIButton!
 
     var chatData: [Message] = [Message]()
+    //let multipeerCommunicator: MultipeerCommunicator = MultipeerCommunicator()
     var conversation: Conversation?
     let listViewController: ConversationsListViewController? = ConversationsListViewController()
-    let communicationManager: CommunicationManager? = CommunicationManager()
+    var communicationManager: CommunicationManager?
     var communicator: MultipeerCommunicator?
     var idUserTo: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // self.tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
-        communicationManager?.chatDelegate = self
+        //multipeerCommunicator.delegate = communicationManager
+        communicationManager = CommunicationManager()
+        communicationManager?.chatDelegate = self as UpdateChatDelegate
         addKeyboardObserver()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
 
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         if let message = messageTextField.text {
             if message != "" {
                 communicationManager?.communicator?.sendMessage(string: message, toUserID: idUserTo!, completionHandler: { success, _ in
+                   print(success)
                     if success {
                         self.sendMessageToLocalArray(text: message)
                     } else {

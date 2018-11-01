@@ -17,8 +17,8 @@ class CommunicationManager: NSObject, CommunicatorDelegate {
     var communicator: MultipeerCommunicator?
     
     override init() {
-        super.init()
         communicator = MultipeerCommunicator()
+        super.init()
         self.communicator?.delegate = self
     }
     

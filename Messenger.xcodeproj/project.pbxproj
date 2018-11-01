@@ -16,6 +16,7 @@
 		B3392DFC2173C00E008DB283 /* ThemesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3392DC821727678008DB283 /* ThemesViewController.m */; };
 		B3392DFD2173CC2D008DB283 /* ThemesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3392DDA2173A58B008DB283 /* ThemesSwift.swift */; };
 		B3392DFE2173CC2F008DB283 /* ThemesViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3392DDD2173B86E008DB283 /* ThemesViewControllerSwift.swift */; };
+		B36B660A218A1DAB0014CBC3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36B6609218A1DAB0014CBC3 /* CoreDataStack.swift */; };
 		B389AE492167719F002D099A /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B389AE482167719F002D099A /* ConversationsListViewController.swift */; };
 		B389AE4B216773CF002D099A /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B389AE4A216773CF002D099A /* ConversationTableViewCell.swift */; };
 		B389AE4D21677B14002D099A /* ConversationCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B389AE4C21677B14002D099A /* ConversationCellConfiguration.swift */; };
@@ -56,6 +57,7 @@
 		B3392DDA2173A58B008DB283 /* ThemesSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesSwift.swift; sourceTree = "<group>"; };
 		B3392DDD2173B86E008DB283 /* ThemesViewControllerSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewControllerSwift.swift; sourceTree = "<group>"; };
 		B3392DFA2173BC3E008DB283 /* Messenger copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Messenger copy-Info.plist"; path = "/Users/BogdanBelogurov/Documents/Белогуров Богдан/Тиньков/Дз/Messenger/Messenger copy-Info.plist"; sourceTree = "<absolute>"; };
+		B36B6609218A1DAB0014CBC3 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B389AE482167719F002D099A /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		B389AE4A216773CF002D099A /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		B389AE4C21677B14002D099A /* ConversationCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellConfiguration.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				B32F03F12153BE2A0009ADC3 /* AppDelegate.swift */,
+				B36B6609218A1DAB0014CBC3 /* CoreDataStack.swift */,
 				B3B3893D218503F500765A65 /* Models */,
 				B389AE4E21677B30002D099A /* Concersation List */,
 				B389AE552168D96C002D099A /* Message List */,
@@ -209,9 +212,9 @@
 			children = (
 				B3B389312184D86000765A65 /* Communicator.swift */,
 				B3B389332184D8B600765A65 /* CommunicatorDelegate.swift */,
-				B3B389422185873800765A65 /* UpdateConversationDelegate.swift */,
 				B3B389352184D97500765A65 /* MultipeerCommunicator.swift */,
 				B3B38940218509C100765A65 /* CommunicationManager.swift */,
+				B3B389422185873800765A65 /* UpdateConversationDelegate.swift */,
 			);
 			path = MPC;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				B389AE542168D903002D099A /* MessageCellConfiguration.swift in Sources */,
 				B389AE502168D57B002D099A /* ConversationViewController.swift in Sources */,
 				B3B3893C218503D000765A65 /* Conversation.swift in Sources */,
+				B36B660A218A1DAB0014CBC3 /* CoreDataStack.swift in Sources */,
 				B3F755AB217BC068004A8AB5 /* GCDDataManager.swift in Sources */,
 				B3F755A7217B5129004A8AB5 /* UserProfileInfo.swift in Sources */,
 				B3B38941218509C100765A65 /* CommunicationManager.swift in Sources */,

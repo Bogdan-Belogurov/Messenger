@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
@@ -32,7 +33,45 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         operationButton.isEnabled = true
     }
     
+    func printDataFromCore() {
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "UserProfileCore")
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext {
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                print(data.value(forKey: "userName") as! String)
+                print(data)
+            }
+            
+        } catch {
+            
+            print("Failed")
+        }
+        }
+    }
+    
     @IBAction func saveButtonPressed(_ sender: UIButton) {
+        
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext {
+            let dataFromCore = UserProfileCore(context: context)
+            dataFromCore.userName = nameTextField.text
+            dataFromCore.userDescription = descriptionTextField.text
+            do {
+                
+                try context.save()
+                print("Сохранение  удалось!")
+            } catch let error as NSError {
+                print("Не удалось сохранить данные \(error), \(error.userInfo)")
+            }
+            
+            printDataFromCore()
+        }
+        
+        
+        
+        
         actitvityIndicator.isHidden = false
         actitvityIndicator.startAnimating()
         profile.name = nameTextField.text

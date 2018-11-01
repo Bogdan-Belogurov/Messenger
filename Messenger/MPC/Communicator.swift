@@ -11,6 +11,6 @@ import MultipeerConnectivity
 
 protocol Communicator {
     func sendMessage(string: String, toUserID: String, completionHandler: ((_ success: Bool, _ error: Error?) -> Void)?)
-    weak var delegate: CommunicatorDelegate? { get set }
+    var delegate: CommunicatorDelegate? { get set }
     var online: Bool { get set }
 }

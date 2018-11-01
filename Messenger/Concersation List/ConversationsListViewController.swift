@@ -10,8 +10,8 @@ import MultipeerConnectivity
 import UIKit
 
 class ConversationsListViewController: UIViewController {
-    let multipeerCommunicator: MultipeerCommunicator = MultipeerCommunicator()
-    let communicationManager: CommunicationManager = CommunicationManager()
+    //let multipeerCommunicator: MultipeerCommunicator = MultipeerCommunicator()
+    var communicationManager: CommunicationManager?
     var onlineConventions = [Conversation]()
     var selectedConversation: Conversation?
 
@@ -42,8 +42,9 @@ class ConversationsListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        multipeerCommunicator.delegate = communicationManager
-        communicationManager.conversationDelegate = self as UpdateConversationDelegate
+        //multipeerCommunicator.delegate = communicationManager
+        communicationManager = CommunicationManager()
+        communicationManager?.conversationDelegate = self as UpdateConversationDelegate
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +52,7 @@ class ConversationsListViewController: UIViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+        
     }
 
     func logThemeChanging(selectedTheme: UIColor) {
