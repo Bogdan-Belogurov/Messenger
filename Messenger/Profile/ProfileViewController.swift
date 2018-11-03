@@ -22,14 +22,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet var actitvityIndicator: UIActivityIndicatorView!
 
     private var isEditMode: Bool = false
-    var dataSavePicker: SaveProfileProtocol = GCDDataManager()
+    var dataSavePicker: SaveProfileProtocol = StorageManager()
     var profile: UserProfile = UserProfile(name: "Name", description: "Description", image: UIImage(named: "placeholder-user"))
 
-    @IBOutlet var gcdButton: UIButton!
-    @IBOutlet var operationButton: UIButton!
+    @IBOutlet var coreDataSave: UIButton!
+
     @IBAction func textFieldAction(_ sender: UITextField) {
-        gcdButton.isEnabled = true
-        operationButton.isEnabled = true
+        coreDataSave.isEnabled = true
     }
 
     @IBAction func saveButtonPressed(_ sender: UIButton) {
@@ -39,12 +38,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profile.description = descriptionTextField.text
         profile.image = userImage.image
 
-        let titleOfButton = sender.titleLabel?.text
-
-        if titleOfButton == "GCD" {
+        if sender.tag == 0 {
             dataSavePicker = GCDDataManager()
-        } else {
+        } else if sender.tag == 1 {
             dataSavePicker = OperationDataManager()
+        } else {
+            dataSavePicker = StorageManager()
         }
 
         dataSavePicker.saveUserProfile(userProfile: profile) { success in
@@ -53,19 +52,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
             if success {
                 self.successAlert()
-                self.loadDataFromUserDefaults()
+                self.loadData()
+                self.viewEditor(self.isEditMode)
             } else {
                 self.errorAlert(function: { self.saveButtonPressed(sender) })
             }
         }
-
-        viewEditor(isEditMode)
+        view.endEditing(true)
     }
 
     @IBAction func editPressed(_ sender: Any) {
         viewEditor(isEditMode)
-        gcdButton.isEnabled = false
-        operationButton.isEnabled = false
+        coreDataSave.isEnabled = false
     }
 
     @IBAction func dismissVC(_ sender: Any) {
@@ -87,7 +85,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         // testFrameEditButton()
         imagePicker.delegate = self
-        loadDataFromUserDefaults()
+        loadData()
         viewEditor(isEditMode)
         addKeyboardObserver()
     }
@@ -181,9 +179,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         dismiss(animated: true, completion: nil)
     }
 
-    // MARK: - Save and Load Profile
+    // MARK: - Load Data Info Profile
 
-    func loadDataFromUserDefaults() {
+    func loadData() {
         dataSavePicker.loadUserProfile { profile in
             self.nameProfileLabel.text = profile?.name
             self.descriptonProfileLabel.text = profile?.description
@@ -209,7 +207,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let keyboardHeight = keyboardFrame.size.height
             view.frame = CGRect(x: view.frame.origin.x,
-                                y: -(keyboardHeight),
+                                y: -keyboardHeight,
                                 width: view.frame.width,
                                 height: view.frame.height)
             view.layoutIfNeeded()

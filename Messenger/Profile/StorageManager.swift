@@ -26,7 +26,7 @@ class StorageManager: SaveProfileProtocol {
             }
             self.coreDataStack.performSave(context: context) {
                 DispatchQueue.main.async {
-                    completion(false)
+                    completion(true)
                 }
             }
         }
