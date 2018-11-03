@@ -21,9 +21,8 @@ class StorageManager: SaveProfileProtocol {
             appUserEntity?.userName = userProfile.name
             appUserEntity?.userDescription = userProfile.description
 
-            if let picture = userProfile.image {
-                appUserEntity?.userImage = picture.jpegData(compressionQuality: 1.0)
-            }
+            appUserEntity?.userImage = userProfile.image?.jpegData(compressionQuality: 1.0)
+            
             self.coreDataStack.performSave(context: context) {
                 DispatchQueue.main.async {
                     completion(true)
@@ -39,7 +38,8 @@ class StorageManager: SaveProfileProtocol {
                 completion(nil)
                 return
             }
-            let profileInfo: UserProfile = UserProfile(name: "Name", description: "About you", image: UIImage(named: "placeholder-user"))
+            let profileInfo: UserProfile = UserProfile(name: "Write your name", description: "Some things about you", image: UIImage(named: "placeholder-user")!)
+           //Вопрос
             profileInfo.name = profileEntity.userName
             profileInfo.description = profileEntity.userDescription
             if let picture = profileEntity.userImage {

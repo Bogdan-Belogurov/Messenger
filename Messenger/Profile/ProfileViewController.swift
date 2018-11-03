@@ -23,20 +23,42 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     private var isEditMode: Bool = false
     var dataSavePicker: SaveProfileProtocol = StorageManager()
-    var profile: UserProfile = UserProfile(name: "Name", description: "Description", image: UIImage(named: "placeholder-user"))
+    
+    var profile: UserProfile? {
+        let name = nameTextField.text
+        let description = descriptionTextField.text
+        
+        if name == nil || description == nil {
+            self.coreDataSave.alpha = 0.3
+            return nil
+        }
+        
+        if name!.isEmpty || description!.isEmpty {
+            self.coreDataSave.alpha = 0.3
+            return nil
+        }
+         let image = userImage.image
+        
+        return UserProfile(name: name!, description: description!, image: image)
+    }
 
     @IBOutlet var coreDataSave: UIButton!
 
     @IBAction func textFieldAction(_ sender: UITextField) {
-        coreDataSave.isEnabled = true
+            coreDataSave.isEnabled = profile != nil
+        if profile != nil {
+            coreDataSave.alpha = 1.0
+        }
+        
+        
     }
 
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         actitvityIndicator.isHidden = false
         actitvityIndicator.startAnimating()
-        profile.name = nameTextField.text
-        profile.description = descriptionTextField.text
-        profile.image = userImage.image
+        profile?.name = nameTextField.text
+        profile?.description = descriptionTextField.text
+        profile?.image = userImage.image
 
         if sender.tag == 0 {
             dataSavePicker = GCDDataManager()
@@ -46,7 +68,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             dataSavePicker = StorageManager()
         }
 
-        dataSavePicker.saveUserProfile(userProfile: profile) { success in
+        dataSavePicker.saveUserProfile(userProfile: profile!) { success in
             self.actitvityIndicator.stopAnimating()
             self.actitvityIndicator.isHidden = true
 
@@ -88,6 +110,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         loadData()
         viewEditor(isEditMode)
         addKeyboardObserver()
+        coreDataSave.isEnabled = false
+        coreDataSave.alpha = 0.3
+        self.nameTextField.placeholder = "Write your name"
+        self.descriptionTextField.placeholder = "Some things about you"
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -136,20 +162,28 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.imagePicker.sourceType = .camera
                 self.present(self.imagePicker, animated: true, completion: nil)
             }
+            self.coreDataSave.isEnabled = true
+            self.coreDataSave.alpha = 1.0
         })
         let photoLibAction = UIAlertAction(title: NSLocalizedString("Фото", comment: "Фото"), style: .default, handler: { _ in
             self.imagePicker.allowsEditing = true
             self.imagePicker.sourceType = .photoLibrary
 
             self.present(self.imagePicker, animated: true, completion: nil)
+            self.coreDataSave.isEnabled = true
+            self.coreDataSave.alpha = 1.0
         })
 
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Отмена", comment: "Отмена"), style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Отмена", comment: "Отмена"), style: .cancel, handler: { _ in
+            self.coreDataSave.isEnabled = false
+            self.coreDataSave.alpha = 0.3
+        })
 
         alertController.addAction(cameraAction)
         alertController.addAction(photoLibAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
+        
     }
 
     private func successAlert() {
@@ -183,8 +217,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     func loadData() {
         dataSavePicker.loadUserProfile { profile in
-            self.nameProfileLabel.text = profile?.name
-            self.descriptonProfileLabel.text = profile?.description
+            if let name = profile?.name {
+                self.nameProfileLabel.text = name
+            }
+            if let description = profile?.description {
+                self.descriptonProfileLabel.text = description
+            }
+            
             self.nameTextField.text = profile?.name
             self.descriptionTextField.text = profile?.description
             self.userImage.image = profile?.image

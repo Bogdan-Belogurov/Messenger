@@ -191,6 +191,17 @@
 			path = "Message List";
 			sourceTree = "<group>";
 		};
+		B395DADD218DEE2100828F72 /* GCDandOperation */ = {
+			isa = PBXGroup;
+			children = (
+				B3F755AA217BC068004A8AB5 /* GCDDataManager.swift */,
+				B3F755AC217C87A4004A8AB5 /* OperationDataManager.swift */,
+				B3F755B0217CDEBB004A8AB5 /* SaveAndLoadOperation.swift */,
+				B3F755AE217CDD87004A8AB5 /* SaveAndLoadDataFunc.swift */,
+			);
+			path = GCDandOperation;
+			sourceTree = "<group>";
+		};
 		B3B389302184D82500765A65 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,15 +236,12 @@
 		B3B462E32169403B00C0E770 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				B3B5923A215EADD60095F693 /* ProfileViewController.swift */,
-				B3F755AA217BC068004A8AB5 /* GCDDataManager.swift */,
-				B3F755AC217C87A4004A8AB5 /* OperationDataManager.swift */,
-				B3F755B0217CDEBB004A8AB5 /* SaveAndLoadOperation.swift */,
-				B3F755AE217CDD87004A8AB5 /* SaveAndLoadDataFunc.swift */,
 				B3F755A8217BBFF4004A8AB5 /* SaveProfileProtocol.swift */,
+				B3B5923A215EADD60095F693 /* ProfileViewController.swift */,
 				B36B6609218A1DAB0014CBC3 /* CoreDataStack.swift */,
 				B395DAD9218C33C400828F72 /* StorageManager.swift */,
 				B395DADB218C39D900828F72 /* AppUserExtension.swift */,
+				B395DADD218DEE2100828F72 /* GCDandOperation */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

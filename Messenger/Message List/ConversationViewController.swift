@@ -11,11 +11,13 @@ import UIKit
 
 class ConversationViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var tableViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var keyBoardViewConstraint: NSLayoutConstraint!
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet var sendMessageButton: UIButton!
 
     var chatData: [Message] = [Message]()
-    //let multipeerCommunicator: MultipeerCommunicator = MultipeerCommunicator()
+    // let multipeerCommunicator: MultipeerCommunicator = MultipeerCommunicator()
     var conversation: Conversation?
     let listViewController: ConversationsListViewController? = ConversationsListViewController()
     var communicationManager: CommunicationManager?
@@ -25,12 +27,11 @@ class ConversationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // self.tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
-        //multipeerCommunicator.delegate = communicationManager
         communicationManager = CommunicationManager()
         communicationManager?.chatDelegate = self as UpdateChatDelegate
         addKeyboardObserver()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
     }
@@ -39,9 +40,11 @@ class ConversationViewController: UIViewController {
         if let message = messageTextField.text {
             if message != "" {
                 communicationManager?.communicator?.sendMessage(string: message, toUserID: idUserTo!, completionHandler: { success, _ in
-                   print(success)
+                    print(success)
                     if success {
-                        self.sendMessageToLocalArray(text: message)
+                            self.sendMessageToLocalArray(text: message)
+    
+                        
                     } else {
                         print("ERROR sendMessage")
                     }
@@ -55,16 +58,16 @@ class ConversationViewController: UIViewController {
 
         chatData.append(message)
 
-        tableView.reloadData()
+        DispatchQueue.main.async {
+        self.tableView.reloadData()
+        self.scrollToRow()
+        }
+        
+        
         messageTextField.text = ""
 
         conversation?.currentMessages = chatData
-
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            let indexPath = IndexPath(row: self.chatData.count - 1, section: 0)
-            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        }
+        
     }
 }
 
@@ -95,7 +98,6 @@ extension ConversationViewController: UITableViewDataSource {
             // cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
             return cell
         }
-
     }
 }
 
@@ -112,8 +114,16 @@ extension ConversationViewController: UITableViewDelegate {
 extension ConversationViewController: UpdateChatDelegate {
     func didReceiveMessage(text: String, fromUser: String, toUser: String) {
         chatData.append(Message(textt: text, isInputMessage: true))
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                self.scrollToRow()
+                }
+            }
+    }
+
+    func scrollToRow() {
+        if self.chatData.count != 0 {
             let indexPath = IndexPath(row: self.chatData.count - 1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
@@ -152,19 +162,28 @@ extension ConversationViewController: UpdateChatDelegate {
         if view.frame.origin.y == 0,
             let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let keyboardHeight = keyboardFrame.size.height
-            view.frame = CGRect(x: view.frame.origin.x,
-                                y: -keyboardHeight,
-                                width: view.frame.width,
-                                height: view.frame.height)
+//            view.frame = CGRect(x: view.frame.origin.x,
+//                                y: -keyboardHeight,
+//                                width: view.frame.width,
+//                                height: view.frame.height)
+            //   self.tableViewBottomConstraint.constant = keyboardHeight
+            keyBoardViewConstraint.constant = -keyboardHeight
+            DispatchQueue.main.async {
+                self.scrollToRow()
+            }
+            
+
             view.layoutIfNeeded()
         }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
-        view.frame = CGRect(x: view.frame.origin.x,
-                            y: 0,
-                            width: view.frame.width,
-                            height: view.frame.height)
+//        view.frame = CGRect(x: view.frame.origin.x,
+//                            y: 0,
+//                            width: view.frame.width,
+//                            height: view.frame.height)
+        // self.tableViewBottomConstraint.constant = 0
+        keyBoardViewConstraint.constant = 0
         view.layoutIfNeeded()
     }
 
