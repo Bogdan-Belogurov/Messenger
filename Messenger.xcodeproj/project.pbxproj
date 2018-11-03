@@ -23,6 +23,8 @@
 		B389AE502168D57B002D099A /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B389AE4F2168D57B002D099A /* ConversationViewController.swift */; };
 		B389AE542168D903002D099A /* MessageCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B389AE532168D903002D099A /* MessageCellConfiguration.swift */; };
 		B389AE592168E843002D099A /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B389AE582168E843002D099A /* MessageCell.swift */; };
+		B395DADA218C33C400828F72 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395DAD9218C33C400828F72 /* StorageManager.swift */; };
+		B395DADC218C39D900828F72 /* AppUserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B395DADB218C39D900828F72 /* AppUserExtension.swift */; };
 		B39AD084215519B300D3C848 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B39AD083215519B300D3C848 /* .gitignore */; };
 		B3B389322184D86000765A65 /* Communicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B389312184D86000765A65 /* Communicator.swift */; };
 		B3B389342184D8B600765A65 /* CommunicatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B389332184D8B600765A65 /* CommunicatorDelegate.swift */; };
@@ -64,6 +66,8 @@
 		B389AE4F2168D57B002D099A /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		B389AE532168D903002D099A /* MessageCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellConfiguration.swift; sourceTree = "<group>"; };
 		B389AE582168E843002D099A /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		B395DAD9218C33C400828F72 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		B395DADB218C39D900828F72 /* AppUserExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserExtension.swift; sourceTree = "<group>"; };
 		B39AD083215519B300D3C848 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B3B389312184D86000765A65 /* Communicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Communicator.swift; sourceTree = "<group>"; };
 		B3B389332184D8B600765A65 /* CommunicatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicatorDelegate.swift; sourceTree = "<group>"; };
@@ -228,6 +232,8 @@
 				B3F755AE217CDD87004A8AB5 /* SaveAndLoadDataFunc.swift */,
 				B3F755A8217BBFF4004A8AB5 /* SaveProfileProtocol.swift */,
 				B36B6609218A1DAB0014CBC3 /* CoreDataStack.swift */,
+				B395DAD9218C33C400828F72 /* StorageManager.swift */,
+				B395DADB218C39D900828F72 /* AppUserExtension.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 				B389AE542168D903002D099A /* MessageCellConfiguration.swift in Sources */,
 				B389AE502168D57B002D099A /* ConversationViewController.swift in Sources */,
 				B3B3893C218503D000765A65 /* Conversation.swift in Sources */,
+				B395DADA218C33C400828F72 /* StorageManager.swift in Sources */,
 				B36B660A218A1DAB0014CBC3 /* CoreDataStack.swift in Sources */,
 				B3F755AB217BC068004A8AB5 /* GCDDataManager.swift in Sources */,
 				B3F755A7217B5129004A8AB5 /* UserProfileInfo.swift in Sources */,
@@ -332,6 +339,7 @@
 				B3B3893F2185043300765A65 /* Message.swift in Sources */,
 				B3F755AD217C87A4004A8AB5 /* OperationDataManager.swift in Sources */,
 				B3392DFC2173C00E008DB283 /* ThemesViewController.m in Sources */,
+				B395DADC218C39D900828F72 /* AppUserExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,14 +492,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 46G92N6X3Y;
 				INFOPLIST_FILE = Messenger/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = BB.Messenger.test;
+				PRODUCT_BUNDLE_IDENTIFIER = BB.Messenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Messenger/Messenger-Bridging-Header.h";
@@ -508,14 +516,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 46G92N6X3Y;
 				INFOPLIST_FILE = Messenger/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = BB.Messenger.test;
+				PRODUCT_BUNDLE_IDENTIFIER = BB.Messenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Messenger/Messenger-Bridging-Header.h";
