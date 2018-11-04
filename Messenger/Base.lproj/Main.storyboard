@@ -215,10 +215,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VcO-B1-WQ1">
-                                                    <rect key="frame" x="10" y="10" width="62" height="50"/>
+                                                    <rect key="frame" x="10" y="5" width="62" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiU-gV-1nV">
-                                                            <rect key="frame" x="10" y="10" width="42" height="30"/>
+                                                            <rect key="frame" x="10" y="10" width="42" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -236,8 +236,8 @@
                                             <constraints>
                                                 <constraint firstItem="VcO-B1-WQ1" firstAttribute="leading" secondItem="r5i-kU-Mb7" secondAttribute="leading" constant="10" id="3pg-wZ-fEE"/>
                                                 <constraint firstItem="VcO-B1-WQ1" firstAttribute="width" relation="lessThanOrEqual" secondItem="r5i-kU-Mb7" secondAttribute="width" multiplier="3/4" constant="-10" id="U9X-Ze-PlI"/>
-                                                <constraint firstAttribute="bottom" secondItem="VcO-B1-WQ1" secondAttribute="bottom" constant="10" id="Zha-bf-5g0"/>
-                                                <constraint firstItem="VcO-B1-WQ1" firstAttribute="top" secondItem="r5i-kU-Mb7" secondAttribute="top" constant="10" id="pAn-29-d5P"/>
+                                                <constraint firstAttribute="bottom" secondItem="VcO-B1-WQ1" secondAttribute="bottom" constant="5" id="Zha-bf-5g0"/>
+                                                <constraint firstItem="VcO-B1-WQ1" firstAttribute="top" secondItem="r5i-kU-Mb7" secondAttribute="top" constant="5" id="pAn-29-d5P"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -253,10 +253,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QZ-J7-oyD">
-                                                    <rect key="frame" x="290" y="10" width="75" height="60"/>
+                                                    <rect key="frame" x="290" y="5" width="75" height="70"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geF-5W-jJh">
-                                                            <rect key="frame" x="10" y="10" width="55" height="40"/>
+                                                            <rect key="frame" x="10" y="10" width="55" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -272,8 +272,8 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="9QZ-J7-oyD" secondAttribute="bottom" constant="10" id="Bbv-md-HhJ"/>
-                                                <constraint firstItem="9QZ-J7-oyD" firstAttribute="top" secondItem="T5Y-VN-HCF" secondAttribute="top" constant="10" id="Kx7-Jl-Apy"/>
+                                                <constraint firstAttribute="bottom" secondItem="9QZ-J7-oyD" secondAttribute="bottom" constant="5" id="Bbv-md-HhJ"/>
+                                                <constraint firstItem="9QZ-J7-oyD" firstAttribute="top" secondItem="T5Y-VN-HCF" secondAttribute="top" constant="5" id="Kx7-Jl-Apy"/>
                                                 <constraint firstAttribute="trailing" secondItem="9QZ-J7-oyD" secondAttribute="trailing" constant="10" id="Xkk-4x-2xR"/>
                                                 <constraint firstItem="9QZ-J7-oyD" firstAttribute="width" relation="lessThanOrEqual" secondItem="T5Y-VN-HCF" secondAttribute="width" multiplier="3/4" constant="-10" id="h0W-L7-wsw"/>
                                             </constraints>
@@ -310,7 +310,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5dl-UN-YSs"/>
                                     <constraint firstAttribute="trailing" secondItem="pht-Pb-ntT" secondAttribute="trailing" constant="10" id="LBW-gL-NGu"/>

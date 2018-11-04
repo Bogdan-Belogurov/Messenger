@@ -21,7 +21,7 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        messageBackground.layer.cornerRadius = 15
+        messageBackground.layer.cornerRadius = 20
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

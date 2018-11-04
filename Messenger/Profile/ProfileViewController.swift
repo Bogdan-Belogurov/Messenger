@@ -29,12 +29,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let description = descriptionTextField.text
         
         if name == nil || description == nil {
-            self.coreDataSave.alpha = 0.3
             return nil
         }
         
         if name!.isEmpty || description!.isEmpty {
-            self.coreDataSave.alpha = 0.3
             return nil
         }
          let image = userImage.image
@@ -45,12 +43,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet var coreDataSave: UIButton!
 
     @IBAction func textFieldAction(_ sender: UITextField) {
-            coreDataSave.isEnabled = profile != nil
+        checkProfileInput()
+    }
+    
+    func checkProfileInput() {
         if profile != nil {
             coreDataSave.alpha = 1.0
+            coreDataSave.isEnabled = true
+        } else {
+            coreDataSave.alpha = 0.3
+            coreDataSave.isEnabled = false
         }
-        
-        
     }
 
     @IBAction func saveButtonPressed(_ sender: UIButton) {
@@ -59,7 +62,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profile?.name = nameTextField.text
         profile?.description = descriptionTextField.text
         profile?.image = userImage.image
-
         if sender.tag == 0 {
             dataSavePicker = GCDDataManager()
         } else if sender.tag == 1 {
@@ -86,6 +88,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBAction func editPressed(_ sender: Any) {
         viewEditor(isEditMode)
         coreDataSave.isEnabled = false
+        coreDataSave.alpha = 0.3
     }
 
     @IBAction func dismissVC(_ sender: Any) {
@@ -162,16 +165,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.imagePicker.sourceType = .camera
                 self.present(self.imagePicker, animated: true, completion: nil)
             }
-            self.coreDataSave.isEnabled = true
-            self.coreDataSave.alpha = 1.0
+            self.checkProfileInput()
         })
         let photoLibAction = UIAlertAction(title: NSLocalizedString("Фото", comment: "Фото"), style: .default, handler: { _ in
             self.imagePicker.allowsEditing = true
             self.imagePicker.sourceType = .photoLibrary
 
             self.present(self.imagePicker, animated: true, completion: nil)
-            self.coreDataSave.isEnabled = true
-            self.coreDataSave.alpha = 1.0
+            self.checkProfileInput()
         })
 
         let cancelAction = UIAlertAction(title: NSLocalizedString("Отмена", comment: "Отмена"), style: .cancel, handler: { _ in
@@ -246,7 +247,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let keyboardHeight = keyboardFrame.size.height
             view.frame = CGRect(x: view.frame.origin.x,
-                                y: -keyboardHeight,
+                                y: -keyboardHeight + (25 + saveStackView.frame.height),
                                 width: view.frame.width,
                                 height: view.frame.height)
             view.layoutIfNeeded()
