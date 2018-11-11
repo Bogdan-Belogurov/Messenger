@@ -8,16 +8,14 @@
 
 import Foundation
 
-protocol UpdateConversationDelegate {
-    //Conversation_LIST
-    func didAdd(userInfo: Conversation)
-    func didDelete(UserID: String)
+protocol UpdateConversationAndChatCoreDataDelegate {
     func didReceiveMessage(text: String, fromUser: String, toUser: String)
+    func didFoundUser(userID: String, userName: String?)
+    func didLostUser(userID: String)
 }
 
 protocol UpdateChatDelegate {
     //CHAT
-    func didReceiveMessage(text: String, fromUser: String, toUser: String)
     func disableSend(withUserID: String)
     func enableSend( withUserID: String)
 }

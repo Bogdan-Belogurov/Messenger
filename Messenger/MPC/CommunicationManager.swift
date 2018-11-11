@@ -12,7 +12,7 @@ import MultipeerConnectivity
 class CommunicationManager: NSObject, CommunicatorDelegate {
     
     var currentPeers = [MCPeerID]()
-    var conversationDelegate: UpdateConversationDelegate?
+    var coreDataStorageDelegate: UpdateConversationAndChatCoreDataDelegate?
     var chatDelegate: UpdateChatDelegate?
     var communicator: MultipeerCommunicator?
     
@@ -24,14 +24,13 @@ class CommunicationManager: NSObject, CommunicatorDelegate {
     
     func didFoundUser(userID: String, userName: String?) {
         print("FoundUser ~> userID: \(userID), user name: \(userName ?? "NONAME")")
-        let userInfo: Conversation = Conversation(name: userName, userID: userID, message: nil, date: Date(), online: true, hasUnreadMessage: false)
-        self.conversationDelegate?.didAdd(userInfo: userInfo)
+        self.coreDataStorageDelegate?.didFoundUser(userID: userID, userName: userName)
         self.chatDelegate?.enableSend(withUserID: userID)
     }
     
     func didLostUser(userID: String) {
         print("Lost User ~> userID: \(userID)")
-        self.conversationDelegate?.didDelete(UserID: userID)
+        self.coreDataStorageDelegate?.didLostUser(userID: userID)
         self.chatDelegate?.disableSend(withUserID: userID)
         
     }
@@ -45,8 +44,7 @@ class CommunicationManager: NSObject, CommunicatorDelegate {
     }
     
     func didReceiveMessage(text: String, fromUser: String, toUser: String) {
-        self.chatDelegate?.didReceiveMessage(text: text, fromUser: fromUser, toUser: toUser)
-        self.conversationDelegate?.didReceiveMessage(text: text, fromUser: fromUser, toUser: toUser)
+        self.coreDataStorageDelegate?.didReceiveMessage(text: text, fromUser: fromUser, toUser: toUser)
     }
     
     

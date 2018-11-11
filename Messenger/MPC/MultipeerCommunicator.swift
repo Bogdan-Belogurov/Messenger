@@ -10,6 +10,7 @@ import Foundation
 import MultipeerConnectivity
 
 class MultipeerCommunicator: NSObject, Communicator {
+
     var delegate: CommunicatorDelegate?
 
     var online: Bool

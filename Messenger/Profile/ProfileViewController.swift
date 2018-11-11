@@ -62,13 +62,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profile?.name = nameTextField.text
         profile?.description = descriptionTextField.text
         profile?.image = userImage.image
-        if sender.tag == 0 {
-            dataSavePicker = GCDDataManager()
-        } else if sender.tag == 1 {
-            dataSavePicker = OperationDataManager()
-        } else {
-            dataSavePicker = StorageManager()
-        }
+        dataSavePicker = StorageManager()
+        
 
         dataSavePicker.saveUserProfile(userProfile: profile!) { success in
             self.actitvityIndicator.stopAnimating()
