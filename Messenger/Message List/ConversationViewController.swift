@@ -6,7 +6,6 @@
 //  Copyright © 2018 Bogdan Belogurov. All rights reserved.
 //
 
-import MultipeerConnectivity
 import UIKit
 import CoreData
 
@@ -19,7 +18,7 @@ class ConversationViewController: UIViewController {
 
     var chatData: [Message] = [Message]()
     var conversation: Conversation?
-    let listViewController: ConversationsListViewController? = ConversationsListViewController()
+    //let listViewController: ConversationsListViewController? = ConversationsListViewController()
     var communicationManager: CommunicationManager?
     var communicator: MultipeerCommunicator?
     var idUserTo: String?
@@ -27,12 +26,13 @@ class ConversationViewController: UIViewController {
     
     var fetchedResultsController: NSFetchedResultsController<Message>?
     var messagesManager: MessagesDataManager?
-    var storageManager: StorageManager? = StorageManager()
-
+    //var storageManager: StorageManager? = StorageManager()
+//асембли
     override func viewDidLoad() {
         super.viewDidLoad()
         // self.tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
-        communicationManager = CommunicationManager()
+        //communicationManager = CommunicationManager()
+        //communicationManager?.coreDataStorageDelegate = self.storageManager
         communicationManager?.chatDelegate = self
         self.messagesManager = MessagesDataManager(tableView: self.tableView, conversationId: self.conversationId!)
         self.fetchedResultsController = self.messagesManager?.fetchedResultsController
@@ -59,7 +59,8 @@ class ConversationViewController: UIViewController {
                 communicationManager?.communicator?.sendMessage(string: message, toUserID: idUserTo!, completionHandler: { success, _ in
                     print(success)
                     if success {
-                        self.storageManager?.didSendMessage(text: message, fromUser: self.idUserTo!, toUser: UIDevice.current.identifierForVendor?.uuidString ?? UIDevice.current.name)
+                        //communicationManager?.coreDataStorageDelegate
+//                        self.storageManager?.didSendMessage(text: message, fromUser: self.idUserTo!, toUser: UIDevice.current.identifierForVendor?.uuidString ?? UIDevice.current.name)
                         DispatchQueue.main.async {
                             self.messageTextField.text = ""
                         }

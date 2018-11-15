@@ -11,8 +11,6 @@ import CoreData
 
 class ConversationsDataManager: NSObject {
     
-    let coreDataStack: CoreDataStack = CoreDataStack()
-    
     let fetchedResultsController: NSFetchedResultsController<Conversation>
     let tableView : UITableView
     
@@ -21,9 +19,7 @@ class ConversationsDataManager: NSObject {
         let fetchRequest = NSFetchRequest<Conversation>(entityName: "Conversation")
         let sortByTimestamp = NSSortDescriptor(key: "conversationId", ascending: false)
         fetchRequest.sortDescriptors = [sortByTimestamp]
-        self.fetchedResultsController = NSFetchedResultsController<Conversation>(fetchRequest:
-            fetchRequest, managedObjectContext: self.coreDataStack.mainContext!, sectionNameKeyPath: nil,
-                          cacheName: nil)
+        self.fetchedResultsController = NSFetchedResultsController<Conversation>(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.coreDataStack.mainContext!, sectionNameKeyPath: nil, cacheName: nil)
         
         super.init()
         self.fetchedResultsController.delegate = self

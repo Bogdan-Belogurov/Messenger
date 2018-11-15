@@ -10,6 +10,7 @@ import CoreData
 import Foundation
 
 class CoreDataStack {
+    static let coreDataStack: CoreDataStack = CoreDataStack()
     // MARK: - NSPersistentStore
 
     private var storeUrl: URL {

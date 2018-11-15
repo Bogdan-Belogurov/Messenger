@@ -11,13 +11,13 @@ import MultipeerConnectivity
 
 class CommunicationManager: NSObject, CommunicatorDelegate {
     
-    var currentPeers = [MCPeerID]()
     var coreDataStorageDelegate: UpdateConversationAndChatCoreDataDelegate?
     var chatDelegate: UpdateChatDelegate?
     var communicator: MultipeerCommunicator?
     
-    override init() {
+    init(storage: UpdateConversationAndChatCoreDataDelegate) {
         communicator = MultipeerCommunicator()
+        self.coreDataStorageDelegate = storage
         super.init()
         self.communicator?.delegate = self
     }

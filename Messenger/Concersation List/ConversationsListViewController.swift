@@ -6,18 +6,15 @@
 //  Copyright © 2018 Bogdan Belogurov. All rights reserved.
 //
 
-import MultipeerConnectivity
 import UIKit
 import CoreData
 
 class ConversationsListViewController: UIViewController {
 
+    let storageManager: StorageManager = StorageManager()
     var communicationManager: CommunicationManager?
     var fetchedResultsController: NSFetchedResultsController<Conversation>?
     var conversationsManager : ConversationsDataManager?
-    var storageManager: StorageManager? = StorageManager()
-    let coreDataStack: CoreDataStack = CoreDataStack()
-    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "listToChat" {
@@ -53,8 +50,8 @@ class ConversationsListViewController: UIViewController {
         super.viewDidLoad()
             let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         print(urls[urls.count-1] as URL)
-        communicationManager = CommunicationManager()
-        communicationManager?.coreDataStorageDelegate = self.storageManager
+        communicationManager = CommunicationManager(storage: storageManager)
+        //communicationManager?.coreDataStorageDelegate = self.storageManager
         self.conversationsManager = ConversationsDataManager(tableView: self.tableView)
         self.fetchedResultsController = self.conversationsManager?.fetchedResultsController
 

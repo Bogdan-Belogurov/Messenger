@@ -11,7 +11,7 @@ import CoreData
 
 class MessagesDataManager: NSObject {
     
-    let coreDataStack: CoreDataStack = CoreDataStack()
+    //let coreDataStack: CoreDataStack = CoreDataStack()
     
     let fetchedResultsController: NSFetchedResultsController<Message>
     let tableView : UITableView
@@ -27,7 +27,7 @@ class MessagesDataManager: NSObject {
         let sortByTimestamp = NSSortDescriptor(key: "date",ascending: false)
         fetchRequest.sortDescriptors = [sortByTimestamp]
         
-        self.fetchedResultsController = NSFetchedResultsController<Message>(fetchRequest: fetchRequest, managedObjectContext: self.coreDataStack.mainContext!, sectionNameKeyPath: nil, cacheName: nil)
+        self.fetchedResultsController = NSFetchedResultsController<Message>(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.coreDataStack.mainContext!, sectionNameKeyPath: nil, cacheName: nil)
         
         super.init()
         self.fetchedResultsController.delegate = self
