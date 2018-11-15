@@ -25,8 +25,6 @@ class ConversationsListViewController: UIViewController {
                 dvc.idUserTo = conversations?.user?.userId
                 dvc.conversationId = conversations?.conversationId
             }
-//            dvc.navigationItem.title = onlineConventions[(currentIndexPath?.row)!].name
-//            dvc.idUserTo = onlineConventions[(currentIndexPath?.row)!].userID
         }
 
         if segue.identifier == "listToThemes" {
@@ -51,7 +49,6 @@ class ConversationsListViewController: UIViewController {
             let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         print(urls[urls.count-1] as URL)
         communicationManager = CommunicationManager(storage: storageManager)
-        //communicationManager?.coreDataStorageDelegate = self.storageManager
         self.conversationsManager = ConversationsDataManager(tableView: self.tableView)
         self.fetchedResultsController = self.conversationsManager?.fetchedResultsController
 
@@ -64,7 +61,6 @@ class ConversationsListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        tableView.reloadData()
         
     }
 
