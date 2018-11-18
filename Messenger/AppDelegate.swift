@@ -12,12 +12,12 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    
+    static let rootAssembly = RootAssembly()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if let currentColor = UserDefaults.standard.colorForKey(key: "chosenTheme") {
-            UINavigationBar.appearance().barTintColor = currentColor
-            UINavigationBar.appearance().backgroundColor = currentColor
-        }
+        AppDelegate.rootAssembly.presentationAssembly.communicationModel.start()
+        AppDelegate.rootAssembly.presentationAssembly.themeModel.loadTheme()
         return true
     }
 

@@ -182,7 +182,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Profile" id="gIA-d1-lqe">
                             <connections>
-                                <segue destination="fCq-oy-vdj" kind="presentation" id="YTw-aw-x15"/>
+                                <segue destination="fCq-oy-vdj" kind="presentation" identifier="" id="YTw-aw-x15"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
