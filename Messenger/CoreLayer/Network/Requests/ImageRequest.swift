@@ -14,7 +14,6 @@ class ImageRequest: IRequest {
         if let url = URL(string: self.urlString) {
             return URLRequest(url: url)
         }
-        
         return nil
     }
     init(urlString: String) {

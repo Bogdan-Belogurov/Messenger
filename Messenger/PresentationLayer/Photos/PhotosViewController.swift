@@ -16,7 +16,6 @@ class PhotosViewController: UIViewController {
         self.imagesCashArray.removeAllObjects()
         dismiss(animated: true, completion: nil)
     }
-
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var statusBarView: UIView!
@@ -27,7 +26,6 @@ class PhotosViewController: UIViewController {
     var photosModel: IPhotosModel = AppDelegate.rootAssembly.presentationAssembly.photosModel
     private var dataSource: [CellDisplayModel] = []
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.photosModel.delegate = self

@@ -28,7 +28,6 @@ class RequestSender: IRequestSender {
                     completionHandler(Result.error("received data can't be parsed"))
                     return
             }
-            
             completionHandler(Result.success(parsedModel))
         }
         task.resume()

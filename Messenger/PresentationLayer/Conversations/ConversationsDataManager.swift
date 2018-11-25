@@ -24,7 +24,6 @@ class ConversationsDataManager: NSObject {
         super.init()
         self.fetchedResultsController.delegate = self
     }
-    
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
@@ -65,6 +64,5 @@ extension ConversationsDataManager: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.tableView.endUpdates()
     }
-    
 }
 
