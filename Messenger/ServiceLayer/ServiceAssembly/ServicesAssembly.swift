@@ -26,5 +26,5 @@ class ServicesAssembly: ServicesAssemblyProtocol {
     
     lazy var coreDataService: CoreDataServiceProtocol = CoreDataService(coreDataStack: self.coreAssembly.coreDataStack)
     
-    
+    lazy var imagesService: IImagesService = ImagesService(requestSender: self.coreAssembly.requestSender)
 }

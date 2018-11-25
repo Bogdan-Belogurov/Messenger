@@ -14,4 +14,5 @@ protocol ServicesAssemblyProtocol {
     var userStorageManager: SaveProfileProtocol { get }
     var coreDataService: CoreDataServiceProtocol { get }
     var communicatorStorageService: CommunicatorStorageDelegate { get }
+    var imagesService: IImagesService { get }
 }

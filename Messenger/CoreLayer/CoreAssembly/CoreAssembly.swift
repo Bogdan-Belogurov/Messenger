@@ -11,4 +11,5 @@ import Foundation
 class CoreAssembly: CoreAssemblyProtocol {
     lazy var coreDataStack: CoreDataStackProtocol = CoreDataStack()
     lazy var multipeerCommuncator: Communicator = MultipeerCommunicator()
+    lazy var requestSender: IRequestSender = RequestSender()
 }

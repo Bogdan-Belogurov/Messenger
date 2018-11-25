@@ -13,4 +13,5 @@ protocol PresentationAssemblyProtocol {
     var userStorageModel: UserStorageModelProtocol { get }
     var communicationModel: CommunicationModelProtocol { get }
     var coreDataModel: CoreDataModelProtocol { get }
+    var photosModel: IPhotosModel { get }
 }

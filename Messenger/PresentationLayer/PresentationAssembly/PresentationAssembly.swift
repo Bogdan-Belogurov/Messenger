@@ -23,4 +23,6 @@ class PresentationAssembly: PresentationAssemblyProtocol {
     lazy var communicationModel: CommunicationModelProtocol = CommunicationModel(communicationManager: self.serviceAssembly.communicationManager)
     
     lazy var coreDataModel: CoreDataModelProtocol = CoreDataModel(coreDataService: self.serviceAssembly.coreDataService)
+    
+    lazy var photosModel: IPhotosModel = PhotosModel(imageService: self.serviceAssembly.imagesService)
 }

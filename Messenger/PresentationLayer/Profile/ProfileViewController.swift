@@ -22,7 +22,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     private var isEditMode: Bool = false
     private var userStorageModel: UserStorageModelProtocol = AppDelegate.rootAssembly.presentationAssembly.userStorageModel
-    
     var profile: UserProfile? {
         let name = nameTextField.text
         let description = descriptionTextField.text
@@ -148,27 +147,34 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 warningAlert.addAction(closeAction)
                 self.present(warningAlert, animated: true, completion: nil)
             } else {
-                self.imagePicker.allowsEditing = true
+                self.imagePicker.allowsEditing = false
                 self.imagePicker.sourceType = .camera
                 self.present(self.imagePicker, animated: true, completion: nil)
             }
             self.checkProfileInput()
         })
         let photoLibAction = UIAlertAction(title: NSLocalizedString("Фото", comment: "Фото"), style: .default, handler: { _ in
-            self.imagePicker.allowsEditing = true
+            self.imagePicker.allowsEditing = false
             self.imagePicker.sourceType = .photoLibrary
 
             self.present(self.imagePicker, animated: true, completion: nil)
             self.checkProfileInput()
         })
+        
+        let loadAction = UIAlertAction(title: NSLocalizedString("Загрузить", comment: "Загрузить"), style: .default) { _ in
+            self.performSegue(withIdentifier: "toBrowse", sender: nil)
+            
+        }
 
         let cancelAction = UIAlertAction(title: NSLocalizedString("Отмена", comment: "Отмена"), style: .cancel, handler: { _ in
-            self.coreDataSave.isEnabled = false
-            self.coreDataSave.alpha = 0.3
+            self.checkProfileInput()
+//            self.coreDataSave.isEnabled = false
+//            self.coreDataSave.alpha = 0.3
         })
 
         alertController.addAction(cameraAction)
         alertController.addAction(photoLibAction)
+        alertController.addAction(loadAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
         
@@ -251,5 +257,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toBrowse" {
+            if let dvc = segue.destination as? PhotosViewController {
+                dvc.closurePhoto = { photoFromVC -> Void in
+                    print("выбрал")
+                    self.userImage.image = photoFromVC
+                }
+                self.checkProfileInput()
+            }
+        }
     }
 }
