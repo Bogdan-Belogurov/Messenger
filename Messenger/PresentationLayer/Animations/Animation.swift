@@ -15,7 +15,6 @@ class LogoEmitter {
     
     init(superView: UIView) {
         self.superView = superView
-        
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture))
         panGesture.maximumNumberOfTouches = 1
         panGesture.minimumNumberOfTouches = 1
@@ -26,7 +25,7 @@ class LogoEmitter {
         switch sender.state {
         case .began:
             let point = sender.translation(in: self.superView)
-            self.createLayer(point: point, parentView: self.superView)
+            self.setupLayer(point: point, parentView: self.superView)
         case .changed:
             let point = sender.location(in: self.superView)
             self.changePosition(point: point)
@@ -35,7 +34,11 @@ class LogoEmitter {
         }
     }
     
-    func createLayer(point: CGPoint, parentView: UIView) {
+    func changePosition(point: CGPoint) {
+        emitter.emitterPosition = point
+    }
+    
+    func setupLayer(point: CGPoint, parentView: UIView) {
         emitter.frame = CGRect(x: point.x, y: point.y, width: 20, height: 20)
         parentView.layer.addSublayer(emitter)
         emitter.emitterShape = CAEmitterLayerEmitterShape.point
@@ -56,9 +59,5 @@ class LogoEmitter {
         emitterCell.velocityRange = 100
         emitterCell.emissionRange = .pi * 2
         emitter.emitterCells = [emitterCell]
-    }
-    
-    func changePosition(point: CGPoint) {
-        emitter.emitterPosition = point
     }
 }

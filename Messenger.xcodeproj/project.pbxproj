@@ -376,7 +376,7 @@
 		B32CCC5521A0B687006F0E3E /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				B3E9320A21B44567006C5FE3 /* Animation.swift */,
+				B3A2E54021B46ADB0093FD1F /* Animations */,
 				B32CCC5221A0B540006F0E3E /* PresentationProtocols */,
 				B32CCC5321A0B555006F0E3E /* PresentationAssembly */,
 				B32CCC5421A0B58E006F0E3E /* Extensions */,
@@ -491,6 +491,14 @@
 				B3F755AE217CDD87004A8AB5 /* SaveAndLoadDataFunc.swift */,
 			);
 			path = GCDandOperation;
+			sourceTree = "<group>";
+		};
+		B3A2E54021B46ADB0093FD1F /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				B3E9320A21B44567006C5FE3 /* Animation.swift */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		B3B389302184D82500765A65 /* Theme */ = {
