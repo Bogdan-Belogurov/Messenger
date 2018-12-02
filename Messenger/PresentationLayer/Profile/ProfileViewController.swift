@@ -92,9 +92,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         setAlertControllerForSelectNewImage()
     }
 
+    var emitter: LogoEmitter?
     override func viewDidLoad() {
         super.viewDidLoad()
-        // testFrameEditButton()
+        emitter = LogoEmitter(superView: self.view)
         imagePicker.delegate = self
         loadData()
         viewEditor(isEditMode)
@@ -108,6 +109,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         sizeAndLayoutSettings()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.emitter = nil
     }
 
     func sizeAndLayoutSettings() {

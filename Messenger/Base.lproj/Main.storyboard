@@ -297,6 +297,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="messageTextFieldChanged:" destination="w1J-ij-592" eventType="editingChanged" id="voL-7j-VFQ"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pht-Pb-ntT">
                                         <rect key="frame" x="335" y="5" width="30" height="30"/>
@@ -333,12 +336,35 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="D9T-87-5iA"/>
                     </view>
+                    <navigationItem key="navigationItem" id="AXS-tv-UEp">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="fjE-cI-NyX">
+                            <rect key="frame" x="50" y="12" width="291" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAP-77-2zP">
+                                    <rect key="frame" x="0.0" y="0.0" width="291" height="20"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="wAP-77-2zP" secondAttribute="bottom" id="Lhg-ax-V21"/>
+                                <constraint firstAttribute="trailing" secondItem="wAP-77-2zP" secondAttribute="trailing" id="jMq-HL-B4w"/>
+                                <constraint firstItem="wAP-77-2zP" firstAttribute="top" secondItem="fjE-cI-NyX" secondAttribute="top" id="kai-9T-l0c"/>
+                                <constraint firstItem="wAP-77-2zP" firstAttribute="leading" secondItem="fjE-cI-NyX" secondAttribute="leading" id="qFg-SU-VrP"/>
+                            </constraints>
+                        </view>
+                    </navigationItem>
                     <connections>
                         <outlet property="keyBoardViewConstraint" destination="tVN-Sl-6KS" id="Spr-T4-A6U"/>
                         <outlet property="messageTextField" destination="7BG-67-ZB7" id="M2F-fT-zSw"/>
                         <outlet property="sendMessageButton" destination="pht-Pb-ntT" id="F0q-KS-9sj"/>
                         <outlet property="tableView" destination="njX-d8-eg3" id="WHs-cp-pQR"/>
                         <outlet property="tableViewBottomConstraint" destination="6dV-nE-ueq" id="xWN-Mz-uSt"/>
+                        <outlet property="titleLabel" destination="wAP-77-2zP" id="6cO-Cd-aft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scW-CX-aLQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

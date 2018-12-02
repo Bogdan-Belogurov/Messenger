@@ -17,6 +17,8 @@ class ConversationsListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    var emitter: LogoEmitter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -32,7 +34,13 @@ class ConversationsListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.emitter = LogoEmitter(superView: self.view)
         
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.emitter = nil
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

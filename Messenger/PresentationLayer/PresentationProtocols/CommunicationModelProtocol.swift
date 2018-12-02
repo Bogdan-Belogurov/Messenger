@@ -11,4 +11,5 @@ import Foundation
 protocol CommunicationModelProtocol {
     func sendMessage(text : String, toUser : String, completion: ((Bool, Error?) -> ())?)
     func start()
+    func setDelegate(delegate : DisplayUserDelegate)
 }

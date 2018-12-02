@@ -12,10 +12,18 @@ class ThemesViewControllerSwift: UIViewController {
     
     let colorThemes = Color()
     var closureTheme: ((UIColor) -> ())?
+    var emitter: LogoEmitter?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.emitter = LogoEmitter(superView: self.view)
         view.backgroundColor = UserDefaults.standard.colorForKey(key: "chosenTheme") ?? UIColor.white
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.emitter = nil
     }
     
     @IBAction func themeChangeButton(_ sender: UIButton){

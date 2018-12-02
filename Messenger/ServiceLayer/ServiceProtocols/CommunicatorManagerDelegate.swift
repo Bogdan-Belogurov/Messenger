@@ -10,6 +10,7 @@ import Foundation
 import MultipeerConnectivity
 
 protocol CommunicatorManagerDelegate: class {
+    var delegate: UserLostDelegate? { get set }
     func start()
     //discovering
     func didFoundUser(userID: String, userName: String?)

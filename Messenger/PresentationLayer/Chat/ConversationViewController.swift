@@ -16,15 +16,19 @@ class ConversationViewController: UIViewController {
     @IBOutlet weak var keyBoardViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var sendMessageButton: UIButton!
-
+    @IBOutlet var titleLabel: UILabel!
+    
     var idUserTo: String?
     var conversationId: String?
     var communicatorModel : CommunicationModelProtocol?
     var fetchedResultsController: NSFetchedResultsController<Message>?
     var messagesManager: MessagesDataManager?
+    var emitter: LogoEmitter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        emitter = LogoEmitter(superView: self.view)
+        AppDelegate.rootAssembly.presentationAssembly.communicationModel.setDelegate(delegate: self)
         self.tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         self.messagesManager = MessagesDataManager(tableView: self.tableView, conversationId: self.conversationId!)
         self.fetchedResultsController = self.messagesManager?.fetchedResultsController
@@ -34,11 +38,13 @@ class ConversationViewController: UIViewController {
             print("fetching error conv")
         }
         addKeyboardObserver()
+        self.sendButtonIsEnabled = false
+        self.userIsEnabled = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        tableView.reloadData()
+        self.emitter = nil
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -52,11 +58,44 @@ class ConversationViewController: UIViewController {
                     if success {
                         DispatchQueue.main.async {
                             self.messageTextField.text = ""
+                            self.sendButtonIsEnabled = false
                         }
                     } else {
                         print("ERROR sendMessage")
                     }
                 })
+            }
+        }
+    }
+    
+    @IBAction func messageTextFieldChanged(_ sender: UITextField) {
+        if self.userIsEnabled == true {
+            self.sendButtonIsEnabled = sender.text?.isEmpty == false
+        }
+        
+    }
+    
+    
+    var sendButtonIsEnabled: Bool = false {
+        didSet {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.sendMessageButton.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+            }) { (finish) in
+                UIView.animate(withDuration: 0.19, animations: {
+                    self.sendMessageButton.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    self.sendMessageButton.alpha = self.sendButtonIsEnabled == true ? 1 : 0.5
+                    self.sendMessageButton.isEnabled = self.sendButtonIsEnabled
+                })
+            }
+        }
+    }
+    
+    var userIsEnabled: Bool? {
+        didSet {
+            UIView.animate(withDuration: 1) {
+                let scale: CGFloat = self.userIsEnabled == true ? 1.1 : 1
+                self.titleLabel.transform = CGAffineTransform(scaleX: scale, y: scale)
+                self.titleLabel.textColor = self.userIsEnabled == true ? #colorLiteral(red: 0.1719075021, green: 0.8975003911, blue: 0.4467943884, alpha: 1) : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             }
         }
     }
@@ -134,5 +173,15 @@ extension ConversationViewController {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+}
+
+extension ConversationViewController: DisplayUserDelegate {
+    func didFoundUser(userID: String, userName: String?) {
+        self.userIsEnabled = true
+    }
+    
+    func didLostUser(userID: String) {
+        self.userIsEnabled = false
     }
 }

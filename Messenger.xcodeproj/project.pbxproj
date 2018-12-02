@@ -75,6 +75,7 @@
 		B3B38941218509C100765A65 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B38940218509C100765A65 /* CommunicationManager.swift */; };
 		B3B389432185873800765A65 /* CommunicatorStorageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B389422185873800765A65 /* CommunicatorStorageDelegate.swift */; };
 		B3B5923B215EADD60095F693 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B5923A215EADD60095F693 /* ProfileViewController.swift */; };
+		B3E9320B21B44567006C5FE3 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E9320A21B44567006C5FE3 /* Animation.swift */; };
 		B3F755A9217BBFF4004A8AB5 /* SaveProfileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F755A8217BBFF4004A8AB5 /* SaveProfileProtocol.swift */; };
 		B3F755AB217BC068004A8AB5 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F755AA217BC068004A8AB5 /* GCDDataManager.swift */; };
 		B3F755AD217C87A4004A8AB5 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F755AC217C87A4004A8AB5 /* OperationDataManager.swift */; };
@@ -157,6 +158,7 @@
 		B3B38940218509C100765A65 /* CommunicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
 		B3B389422185873800765A65 /* CommunicatorStorageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicatorStorageDelegate.swift; sourceTree = "<group>"; };
 		B3B5923A215EADD60095F693 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B3E9320A21B44567006C5FE3 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		B3F755A8217BBFF4004A8AB5 /* SaveProfileProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveProfileProtocol.swift; sourceTree = "<group>"; };
 		B3F755AA217BC068004A8AB5 /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		B3F755AC217C87A4004A8AB5 /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 		B32CCC5521A0B687006F0E3E /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				B3E9320A21B44567006C5FE3 /* Animation.swift */,
 				B32CCC5221A0B540006F0E3E /* PresentationProtocols */,
 				B32CCC5321A0B555006F0E3E /* PresentationAssembly */,
 				B32CCC5421A0B58E006F0E3E /* Extensions */,
@@ -649,6 +652,7 @@
 				B32CCC6621A13F91006F0E3E /* PresentationAssembly.swift in Sources */,
 				B3392DFC2173C00E008DB283 /* ThemesViewController.m in Sources */,
 				B32B5B6621A86E5D00C92D7D /* IParser.swift in Sources */,
+				B3E9320B21B44567006C5FE3 /* Animation.swift in Sources */,
 				B395DADC218C39D900828F72 /* AppUserExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

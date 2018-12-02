@@ -8,10 +8,16 @@
 
 import Foundation
 
+protocol UserLostDelegate : class {
+    func didFoundUser(userID : String, userName : String?)
+    func didLostUser(userID : String)
+}
+
 class CommunicationManager: NSObject, CommunicatorManagerDelegate {
     
     var coreDataStorage: CommunicatorStorageDelegate
     var communicator: Communicator
+    var delegate: UserLostDelegate?
     
     init(storage: CommunicatorStorageDelegate, communicator: Communicator) {
         self.coreDataStorage = storage
@@ -27,11 +33,13 @@ class CommunicationManager: NSObject, CommunicatorManagerDelegate {
     func didFoundUser(userID: String, userName: String?) {
         print("FoundUser ~> userID: \(userID), user name: \(userName ?? "NONAME")")
         self.coreDataStorage.didFoundUser(userID: userID, userName: userName)
+        self.delegate?.didFoundUser(userID: userID, userName: userName)
     }
     
     func didLostUser(userID: String) {
         print("Lost User ~> userID: \(userID)")
         self.coreDataStorage.didLostUser(userID: userID)
+        self.delegate?.didLostUser(userID: userID)
     }
     
     func failedToStartBrowsingforUsers(error: Error) {
