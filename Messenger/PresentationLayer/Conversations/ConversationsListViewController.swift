@@ -48,7 +48,7 @@ class ConversationsListViewController: UIViewController {
             if let currentIndexPath = tableView.indexPathForSelectedRow {
                 let dvc = segue.destination as! ConversationViewController
                 let conversations = self.fetchedResultsController?.object(at: currentIndexPath)
-                dvc.navigationItem.title = conversations?.user?.name
+                dvc.titleLabel.text = conversations?.user?.name
                 dvc.idUserTo = conversations?.user?.userId
                 dvc.conversationId = conversations?.conversationId
                 dvc.communicatorModel = AppDelegate.rootAssembly.presentationAssembly.communicationModel
